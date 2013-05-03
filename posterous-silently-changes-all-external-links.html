@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<link href="exports.css" rel='stylesheet'>
+<link href="exports.css" rel='stylesheet'>
+
+</head>
+<body>
+<div id='wrap'>
+<div id='header'>
+<h1>Alexey's blog</h1>
+<h2>
+This is an archived post
+</h2>
+</div>
+<div id='content'><div id='nav'>
+<a href="simple-bookmarklet-that-adds-ltmarkdowngt-tag.html">Previous</a>
+&nbsp; 
+<a href="index.html">Index</a>
+</div>
+<div class='post'>
+<div class='post_header'>
+<h3>Posterous silently changes all external links on users' posts</h3>
+<div class='post_info'>
+<span class='post_time'>April 30 2010,  1:44 PM</span>
+<span class='author'>&nbsp;by Alexey Shamrin</span>
+</div>
+</div>
+<div class='post_body'><div>Some time ago I noticed that Posterous breaks middle click for links in my posts. Middle click behaves as if you've pressed left click (at least in Google Chrome). Strangely, Ctrl+left click works as intended. At that time I didn't pay much attention to it.</div>
+<div> </div>
+<div>But yesterday I tried to copy a link from some Posterous blog. The link was mangled! Try it youself - copy this <a href="http://www.google.com">Google</a> link. Instead of</div>
+<div class="CodeRay">
+  <div class="code"><pre>http://www.google.com</pre></div>
+</div>
+
+<div>you'll get</div>
+<div class="CodeRay">
+  <div class="code"><pre>http://api.viglink.com/api/click?key=8eb8c964d427e97a1567cec6532655f0&amp;v=1&amp;libId=1272660521808&amp;loc=http%3A%2F%2Fshamrin.posterous.com%2Fposterous-silently-changes-all-external-links&amp;out=http%3A%2F%2Fwww.google.com%2F&amp;txt=http%3A%2F%2Fwww.google.com&amp;title=%0A%09%09Posterous%20silently%20changes%20all%20external%20links%20on%20users'%20posts%20-%20Alexey%20Shamrin%0A%09&amp;format=go</pre></div>
+</div>
+
+<div>(JavaScript must be enabled. I've tested it on Google Chrome and Internet Explorer, all on Windows 7. It's important to wait for the page to finish loading.)</div>
+<div> </div>
+<div>Aha! Posterous is using third-party service here - <a href="http://www.viglink.com/">VigLink</a>. I haven't heard of it before (even Hacker News <span style="text-decoration: line-through;">is</span> was <a href="http://www.google.com/search?q=viglink+site:news.ycombinator.com">silent about it</a>).</div>
+<div> </div>
+<div>From TechCrunch <a href="http://techcrunch.com/2010/01/12/viglink-affiliate-programs/">coverage on VigLink</a>:</div>
+<div> </div>
+<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">To start using VigLink, publishers simply drop a snippet of JavaScript into their pages. Then, whenever the publisher links to a valid product (say, some shoes on Amazon), VigLink will automatically convert that standard link into an affiliate link. The publisher still determines which stores and products they’re linking to — VigLink simply modifies that link to include the proper affiliate program URL.<p /> 
+</blockquote>
+<p>I am torn on this issue. On one hand, it's perfectly understandable that Posterous tries to monetize on its users. On the other hand, I want my links on my blog to stay intact! Or at least I want to be informed about this mangling. And I want a way to turn this "feature" off. (Tried to edit my Posterous theme, but VigLink magic doesn't show up there.)</p>
+<p><strong>Update:</strong> see <a href="http://news.ycombinator.com/item?id=1309403">Hacker News thread</a> for great discussion</p>
+<p><strong>Update 2:</strong> "copy link" trick doesn't seem to work for everybody (e.g. Safari). The best way to test it is to <a href="http://news.ycombinator.com/item?id=1309628">use</a> some tool to monitor HTTP requests.</p>
+<p><strong>Update 3:</strong> After several hours after posting this I couldn't repeat "copy link" trick. Neither in Chrome, nor in Internet Explorer. And middle click now works as intended in Chrome. It seems Posterous and/or VigLink changed some of their algorithms. They didn't get rid of affiliate magic (VigLink javascript is still there). But thanks for fixing bugs - the most annoying for me was non-working middle-click in Chrome.</p></div>
+<div class='post_responses'>
+<h4>20767 views and 27 responses</h4>
+<ul class='post_responses list'>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:27 PM</div>
+<div class='response_name'>Tim L responded:</div>
+</div>
+<div class='response_body'>Using Firefox 3.6.3 on Snow Leopard. Let the full page load and tried copying the link and it copied as is with no VigLink redirect.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:31 PM</div>
+<div class='response_name'>Terry Jones responded:</div>
+</div>
+<div class='response_body'>The javascript in the incoming page could be snipped out by an extension, greasemonkey, etc. Similar to the extensions that clean Google results of ads, sponsored links, etc.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:40 PM</div>
+<div class='response_name'> (Facebook) responded:</div>
+</div>
+<div class='response_body'>So are they making money off of these links? That seems to be something that an unethical company like <a href="http://www.dirtyphonebook.com" rel="nofollow">http://www.dirtyphonebook.com</a> or godaddy would do, not a great group of guys like posterous.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:40 PM</div>
+<div class='response_name'>drivingmenuts (Twitter) responded:</div>
+</div>
+<div class='response_body'>Copied the link and pasted into the address bar in Safari - no change. However if I right-click, and choose Open Link in New Window, it briefly flashes over to VigLink.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:49 PM</div>
+<div class='response_name'>Christopher Bailey responded:</div>
+</div>
+<div class='response_body'>This seems like a bad move on Posterous' part.  They should at least be up front with it, and let user's decide if they're ok with it.  As a way to provide a free service, that's fine, but again, be open about it.  I don't see anything in the Terms of Service that really says one way or the other whether this is ok.  It says your content is your content, so one could argue, but you could also argue that they aren't truly changing the nature of your content.  Dunno.<p>It also probably partly explains why they don't let you put Google ads on your blog.  Oh, and it's interesting in light of the quote about VigLink replacing links to "products", that it'd still change links say to someone's Twitter account (it's processing all links as far as I can tell, or at least it is on my blog).</p><p>But, regardless, it's sad to see them do this without telling users.  For the time being, I'll chalk that up to a mis-step on the part of a startup, and hope that you bringing this to light will yield a response from Posterous.  If not, I've already been thinking of ditching it (it's not a bad service, just isn't meeting some of my needs), so this may be the push over the edge.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:54 PM</div>
+<div class='response_name'>Daniel Brusilovsky liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  3:59 PM</div>
+<div class='response_name'>Nuno Maia responded:</div>
+</div>
+<div class='response_body'>SHARE THE DOUGH! <br />u want viglink? fine... allow adsense for users.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  4:31 PM</div>
+<div class='response_name'>llboston (Twitter) responded:</div>
+</div>
+<div class='response_body'>View the html source code and you will see the viglink js code at the bottom. Can't blame a company for making money, but at least let your users know.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  4:38 PM</div>
+<div class='response_name'>Tim Tate responded:</div>
+</div>
+<div class='response_body'>I'm not getting a viglink url in Firefox, I still just have google.com</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  5:26 PM</div>
+<div class='response_name'>Sachin Agarwal responded:</div>
+</div>
+<div class='response_body'>Hey guys,<p>Posterous partnered with Viglink.com back in December as an experiment to see if we could generate revenue by adding an affiliate code to links that don't already have one. We chose to work with Viglink because their technology doesn't interfere with the user experience at all.</p><p>1. Links in Posterous posts are not edited in any way<br />2. Viglink javascript intercepts clicks and adds an affiliate code when possible<br />3. Affiliate codes are not stripped or altered if they already exist<br />4. Copying links is unchanged</p><p>Before deploying this change, we tested it heavily to make sure we weren't doing anything that would be visible to the publisher or reader. The fact that it took 4 months for someone to really notice this is a testament to how unobtrusive it is.</p><p>Some people have commented that we should be sharing revenue back to the users. You are absolutely right. This is something we mentioned to Viglink at our very first meeting with them and something we will add when it's technically possible.</p><p>Admittedly, we should have announced this on our blog. This was definitely an oversight on our part. Our goal is to be 100% transparent with everything we do at Posterous, especially when it affects your blog and content.</p><p>From Posterous, we apologize. Going forward we will be sure to notify you of any changes we make to the site.</p><p>With regards to viglink: we really appreciate all your feedback and we're going to evaluate our use of the service going forward.</p><p>-Sachin<br />cofounder, posterous.com</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  5:51 PM</div>
+<div class='response_name'>Andrew Warner responded:</div>
+</div>
+<div class='response_body'>For what it's worth Sachin, as a user, I don't want a share of your revenue. (I'm only speaking for myself, but I think others would agree.)<p>I suggest giving people who are bothered a way to opt out.</p><p>I really want to see you do well. I know that you can't succeed as a business if we keep protesting when you try bringing in revenue. And I'm not adding my own affiliate links, so why shouldn't you get the revenue.</p><p>I agree that you should have given us a heads up on your company blog, but in a fast-growing startup I think it's a reasonable oversight.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  6:12 PM</div>
+<div class='response_name'>Mark John Buenconsejo liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  6:12 PM</div>
+<div class='response_name'>MacSmiley responded:</div>
+</div>
+<div class='response_body'>Just one more reason I use <a href="http://macsmiley.tumblr.com/" rel="nofollow">Tumblr</a> instead of Posterous.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  7:15 PM</div>
+<div class='response_name'>Mark John Buenconsejo responded:</div>
+</div>
+<div class='response_body'>For me, it think it's nice to have the paid version later on, without the affiliate links. I'd pay a premium to have this removed on my posterous site.<p>The way this was not disclosed to users sounds fishy (over 4 months, and a user found out about it), but having the affiliate link to earn some money for a free service is ok. This should also be disclosed when signing up for the free service, if you want to be transparent. Being transparent means, taking the initiative to be transparent -- informing users even if they don't ask for it.</p><p>I think it's a minor detail that can be annoying to some, and can be a factor if users want to use the service or discontinue using it.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Apr 30 2010,  8:12 PM</div>
+<div class='response_name'>Christopher Bailey responded:</div>
+</div>
+<div class='response_body'>This is interesting.  I was all ready to argue that it changes the links for when you try to right click and copy.  I DID do this earlier, otherwise I wouldn't have been able to mention that.  I did it - right clicked, said copy, and then went and pasted it elsewhere and I saw the transformed URL's.  I go to my blog now and see that they aren't doing that.  Very odd, makes me wonder.<p>So yes, I think this is just one of those learned lessons.  I don't really think this is a situation of the "do it now, ask for leniency later" vs. asking for permission.  I suggest in the future just stating that you'll do it.  As is already fairly evident, most of us are grateful for a good free service and want to see Posterous do well and succeed (many of us I bet are in startups as well - I am, so we get it).  I think it's actually a fairly decent way to monetize as well, just think that you need to be up front about it.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010, 12:15 AM</div>
+<div class='response_name'>sascha assbach liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010,  1:35 AM</div>
+<div class='response_name'> (Facebook) responded:</div>
+</div>
+<div class='response_body'>With so many legit sites already doing affiliate linking, and with these affiliate semantics completely transparent to the end user, what's the fuss over?  At the end of the day, websites providing free services need to pay their own bills to keep the site running.  I'd gladly take non-intrusive link sharing over obnoxious banners any day.</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010,  1:40 AM</div>
+<div class='response_name'>Sachin Agarwal responded:</div>
+</div>
+<div class='response_body'>Thanks, Jon!</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010,  4:26 AM</div>
+<div class='response_name'>Eric Johnson liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010,  9:37 AM</div>
+<div class='response_name'>Jess Sloss responded:</div>
+</div>
+<div class='response_body'>Pay the bills, fine. Just tell us about it. What was the reason for not wanting to let users know about it? <p>Seems silly to not publicize something that is very easy to justify. Anything else we should know about? </p><p>I still love the product, and love seeing innovative entrepreneurs succeed (and yes making money is a big part of that) but you've lost brownie points. </p><p>(luckily they're pretty easy to earn back)</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010, 10:31 AM</div>
+<div class='response_name'> (Facebook) responded:</div>
+</div>
+<div class='response_body'>Hi Everyone,<p>I am the Relationship Manager at VigLink, you can find our thoughts on the topic here <a href="http://vglnk.com/M.</p" rel="nofollow">http://vglnk.com/M.</p</a>></p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010, 10:34 AM</div>
+<div class='response_name'> (Facebook) responded:</div>
+</div>
+<div class='response_body'>Apologies, period broke the link<br /><a href="http://vglnk.com/M" rel="nofollow">http://vglnk.com/M</a></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010,  2:18 PM</div>
+<div class='response_name'>Electronic Foodie responded:</div>
+</div>
+<div class='response_body'>Will Posterous be disclosing how much it made from its experiment with Viglink? Where will this money be directed towards? <p>We believe the money Posterous made with Viglink, up until the time it officially notified its users of Viglink, should be donated to charitable organizations voted upon by its users.</p><p>Sincerely,</p><p>Electronic Foodie<br />Electronic Music + Food<br /><a href="http://electronicfoodie.posterous.com" rel="nofollow">http://electronicfoodie.posterous.com</a></p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  1 2010,  5:46 PM</div>
+<div class='response_name'>Wallace liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  2 2010,  6:58 PM</div>
+<div class='response_name'>cygnoir liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>May  7 2010,  2:08 PM</div>
+<div class='response_name'>Ed Parcell liked this post.</div>
+</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Nov 29 2010,  8:03 AM</div>
+<div class='response_name'>Marie Languinni responded:</div>
+</div>
+<div class='response_body'>If I well understand, Posterous did that for Google ?</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<link href="exports.css" rel='stylesheet'>
+<link href="exports.css" rel='stylesheet'>
+
+</head>
+<body>
+<div id='wrap'>
+<div id='header'>
+<h1>Alexey's blog</h1>
+<h2>
+This is an archived post
+</h2>
+</div>
+<div id='content'><div id='nav'>
+<a href="index.html">Index</a>
+&nbsp; 
+<a href="simple-bookmarklet-that-adds-ltmarkdowngt-tag.html">Next</a>
+</div>
+<div class='post'>
+<div class='post_header'>
+<h3>Google Chrome disables initial search engine selection in Russia</h3>
+<div class='post_info'>
+<span class='post_time'>September 16 2011,  3:31 AM</span>
+<span class='author'>&nbsp;by Alexey Shamrin</span>
+</div>
+</div>
+<div class='post_body'><p><img src="http://img-fotki.yandex.ru/get/4709/96326437.0/0_5ca2f_1a5f0624_L.jpg" alt="Google Chrome search engine selection dialog" /></p>
+
+<p>That&rsquo;s how Google Chrome welcomes you when you first start it. Good move in the &ldquo;don&rsquo;t be evil&rdquo; style, isn&rsquo;t it?</p>
+
+<p>But there&rsquo;s one country where this message doesn&rsquo;t show up &ndash; Russia. Why?</p>
+
+<p>The answer is the <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/browser/first_run/first_run.cc?r1=84235&amp;r2=84234&amp;pathrev=84235">commit</a> recently <a href="http://twitter.com/ddnv/status/114359533899493376">discovered</a> in Chromium (which is upstream to Google Chrome):</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>$ svn diff -r84234:84235 http://src.chromium.org/svn/trunk/src
+...
+Index: chrome/browser/first_run/first_run.cc
+===================================================================
+--- chrome/browser/first_run/first_run.cc   (revision 84234)
++++ chrome/browser/first_run/first_run.cc   (revision 84235)
+@@ -396,6 +396,14 @@
+ }
+
+ // static
++bool FirstRun::SearchEngineSelectorDisallowed() {
++  // For now, the only case in which the search engine dialog should never be
++  // shown is if the locale is Russia.
++  std::string locale = g_browser_process-&gt;GetApplicationLocale();
++  return (locale == &quot;ru&quot;);
++}
++
++// static
+ bool FirstRun::SetOEMFirstRunBubblePref() {
+   PrefService* local_state = g_browser_process-&gt;local_state();
+   if (!local_state)
+Index: chrome/browser/first_run/first_run.h
+===================================================================
+--- chrome/browser/first_run/first_run.h    (revision 84234)
++++ chrome/browser/first_run/first_run.h    (revision 84235)
+@@ -141,6 +141,10 @@
+   // Returns false if the pref could not be set.
+   static bool SetPersonalDataManagerFirstRunPref();
+
++  // True if special circumstances should prevent the search engine ballot from
++  // being shown.
++  static bool SearchEngineSelectorDisallowed();
++
+  private:
+   friend class FirstRunTest;
+   FRIEND_TEST_ALL_PREFIXES(Toolbar5ImporterTest, BookmarkParse);</pre></div>
+</div>
+
+
+<p>This code was added in <a href="http://src.chromium.org/viewvc/chrome?view=rev&amp;revision=84235">May 2011</a>, linking to <a href="http://code.google.com/p/chromium/issues/detail?id=81578">bug 81578</a>. Note the comment about the &ldquo;special circumstances [that] should prevent the search engine ballot from being shown&rdquo;. What are these circumstances?</p>
+
+<p>Russia is one a few countries where Google is <a href="http://www.crunchbase.com/company/yandex">not the leading search engine</a>, losing to <a href="http://en.wikipedia.org/wiki/Yandex">Yandex</a>.</p>
+
+<p>In addition to Russia, Google isn&rsquo;t leading in <a href="http://en.wikipedia.org/wiki/Naver">South Korea</a>, <a href="http://en.wikipedia.org/wiki/Seznam.cz">Czech Republic</a>, <a href="http://en.wikipedia.org/wiki/Baidu">China</a>. Only in Russia Google decided to go against &ldquo;Don&rsquo;t be evil&rdquo;.</p>
+
+<p>Should we expect more countries to join the exception list?</p></div>
+<div class='post_tags'>
+<h4>Tags</h4>
+<div class='post_tags_list'>google</div>
+</div>
+<div class='post_responses'>
+<h4>5409 views and 9 responses</h4>
+<ul class='post_responses list'>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 16 2011,  6:25 AM</div>
+<div class='response_name'>yk4ever (Twitter) responded:</div>
+</div>
+<div class='response_body'>First of all, fix your English: loosing->losing. Popular, but nevertheless annoying mistake.<p>Second, the title of the post is somewhat misleading. Only initial selection screen is disabled. You can still select a different search engine via the standard options.</p><p>Third, you do realize that the situation is not exactly new, right? Russian Firefox is the only localized version of Firefox offering non-Google search engine by default. Russia is the battleground, it started a while ago.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 16 2011,  6:41 AM</div>
+<div class='response_name'>Alexey Shamrin responded:</div>
+</div>
+<div class='response_body'>Thank you, yk4ever! <p>I thougt it's clear from the post that I am writing about the initial dialog. Nevertheless I have changed the title (and "losing to").</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 16 2011,  6:47 AM</div>
+<div class='response_name'>Alexey Shamrin responded:</div>
+</div>
+<div class='response_body'>Chrome users in most of the world see this dialog. They get an impression Google is not trying to be an evil corporation, because it gives users explicit choice. <p>But for most of the world it doesn't matter - Google is already leading there! While in a country where it *does* matter...</p><p>I don't know why Firefox chose Yandex as a default search engine in Russia. They could be just using the best search engine in every country.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 18 2011, 11:32 AM</div>
+<div class='response_name'>_epsilon (Twitter) responded:</div>
+</div>
+<div class='response_body'>Alexey, the reason is simple — Yandex pays more per Russian user.<p>So the question for a browser vendor is: Would it choose the most popular, the most relevant, or the most paying search engine. And both Opera and Mozilla (and the Ubuntu developers, and a lot of others) choose search provider which pays more. </p><p>And in Russia it's Yandex who pays more than others.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 19 2011,  2:51 AM</div>
+<div class='response_name'>yk4ever (Twitter) responded:</div>
+</div>
+<div class='response_body'>Yup, Firefox "chose" Yandex in Russia for one simple reason: Yandex is paying them for that.<p>Also, did you see <a href="http://chrome.yandex.ru/" rel="nofollow">http://chrome.yandex.ru/</a> ? A patched version of Chrome with Yandex search built in.</p><p>Yandex is fighting tooth and nail to maintain its market share in Russia. No wonder Google isn't very happy to promote it in their own builds of browser.</p><p>But, as far as I know, Google acknowledges it was a mistake and is reinstating the search engine selection screen in Russian Chromium builds.</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 19 2011,  3:42 AM</div>
+<div class='response_name'>Alexey Shamrin responded:</div>
+</div>
+<div class='response_body'>@_epsilon, @yk4ever: <br />How do you know Yandex is paying more?</div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 19 2011,  3:44 AM</div>
+<div class='response_name'>Alexey Shamrin responded:</div>
+</div>
+<div class='response_body'>@yk4ever:<br />I am not arguing there's a fight. But the real issue is hypocrisy. I'll quote comment from Hacker News user:<p>"Nobody has said Google had to do it. They just.. did. Until.. they didn't. The OP is questioning the hypocrisy, which is of course a common meme. Google wants to have it both ways."</p><p><a href="http://news.ycombinator.com/item?id=3004409" rel="nofollow">http://news.ycombinator.com/item?id=3004409</a></p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 19 2011,  3:52 AM</div>
+<div class='response_name'>Alexey Shamrin responded:</div>
+</div>
+<div class='response_body'>@yk4ever:<p>By the way, read the title of <a href="http://chrome.yandex.ru" rel="nofollow">http://chrome.yandex.ru</a>. It explicitly states "Chrome with Yandex Search" (Хром с поиском Яндекса).</p></div>
+</li>
+<li class='response clearfix'>
+<div class='response_header'>
+<div class='response_time'>Sep 19 2011,  5:18 AM</div>
+<div class='response_name'>yk4ever (Twitter) responded:</div>
+</div>
+<div class='response_body'>Hypocrisy? Really? Google is offering a superb free and open-source product. You've always had an ability to select any search engine. Do you really think that NOT promoting your direct competitor on the starting page can be considered "evil"?<p>Google has had several lapses in the past (Buzz privacy controversy, for example), but they fixed them. And they are fixing this one as well. The company cares about its conduct and image.</p><p>As for details of Firefox/Yandex builds, please see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=471561" rel="nofollow">https://bugzilla.mozilla.org/show_bug.cgi?id=471561</a></p></div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
